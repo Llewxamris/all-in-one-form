@@ -3,36 +3,36 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
+    <link rel="stylesheet" href="./style.css" type="text/css" />
     <title>Register a New Account</title>
 
 </head>
 
 <body>
-    <h1>Register a New Account!</h1>
-    <h2>Your almost ready to use our fabulous product, just fill out this form!</h2>
+    <header>
+        <h1>Register a New Account!</h1>
+        <h2>Your almost ready to use our fabulous product, just fill out this form!</h2>
+    </header>
     <hr />
+    <?php
+        $displayForm = TRUE;
+        if ($displayForm) {
+        ?>
+        <form action="" method="post">
+            <input type="text" name="firstName" id="firstName" value="" placeholder="First Name"
+                class="error">
+            <br /><br />
 
-    <form action="" method="post">
-        <label for="firstName">First Name: </label>
-        <input type="text" name="firstName" id="firstName" value="" placeholder="George"
-        />
-        <br /><br />
+            <input type="text" name="lastName" id="lastName" value="" placeholder="Last Name">
+            <br /><br />
 
-        <label for="lastName">Last Name: </label>
-        <input type="text" name="lastName" id="lastName" value="" placeholder="Sekely"
-        /><br /><br />
+            <input type="text" name="street" id="street" value="" placeholder="Street">
+            <br /><br />
 
-        <label for="street">Street: </label>
-        <input type="text" name="street" id="street" value="" placeholder="123 Nowhere Ave"
-        /><br /><br />
+            <input type="type" name="city" id="city" value="" placeholder="City">
+            <br /><br />
 
-        <label for="city">City: </label>
-        <input type="type" name="city" id="city" value="" placeholder="Gatineau" />
-        <br /><br />
-
-        <label for="province">Province: </label>
-        <select name="province" id="province">
+            <select name="province" id="province">
             <option value="" disabled="disabled" selected="selected">Please choose you province</option>
             <option value="ON">Ontario</option> 
             <option value="QC">Quebec</option>
@@ -48,35 +48,30 @@
             <option value="YK">Yukon</option>
             <option value="NV">Nunavut</option>
         </select>
-        <br /><br />
+            <br /><br />
 
-        <label for="postalCode">Postal Code: </label>
-        <input type="text" name="postalCode" id="postalCode" value="" placeholder="J8Y 6T3"
-        />
-        <br /><br />
+            <input type="text" name="postalCode" id="postalCode" value="" placeholder="Postal Code">
+            <br /><br />
 
-        <label for="email">Email: </label>
-        <input type="text" name="email" id="email" value="" placeholder="gsekely@videotron.ca"
-        />
-        <br /><br />
+            <input type="text" name="email" id="email" value="" placeholder="E-mail Address">
+            <br /><br />
 
-        <label for="telephone">Telephone: </label>
-        <input type="text" name="telephone" id="teleponge" value="" placeholder="819-778-2270"
-        />
-        <br /><br />
+            <input type="text" name="telephone" id="teleponge" value="" placeholder="Phone Number">
+            <br /><br />
 
-        <label for="pass">Password: </label>
-        <input type="password" name="pass" id="pass" value="" />
-        <br /><br />
+            <input type="password" name="pass" id="pass" value="" placeholder="Password">
+            <br /><br />
 
-        <label for="confirmPass">Confirm Password: </label>
-        <input type="password" name="confirmPass" id="confirmPass" value="" />
-        <br /><br />
+            <input type="password" name="confirmPass" id="confirmPass" value="" placeholder="Confirm Password">
+            <br /><br />
 
-        <input type="submit" name="submit" id="submit" value="Register Now!" />
-    </form>
-    <hr />
-    <p>copyright 2016</p>
+            <input type="submit" name="submit" id="submit" value="Register Now!">
+        </form>
+        <?php
+        }
+        ?>
+            <hr />
+            <p>&#169; 2016</p>
 </body>
 
 </html>
