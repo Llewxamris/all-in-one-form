@@ -9,16 +9,15 @@
 </head>
 
 <body>
-    <header>
-        <h1>Register a New Account!</h1>
-        <h2>Your almost ready to use our fabulous product, just fill out this form!</h2>
-    </header>
-    <hr />
     <?php
-        $displayForm = TRUE;
-        if ($displayForm) {
-        ?>
-        <form action="" method="post">
+    include_once './AccountFunctions.php';
+    ?>
+        <header>
+            <h1>Register a New Account!</h1>
+            <h2>Your almost ready to use our fabulous product, just fill out this form!</h2>
+        </header>
+        <hr />
+        <form action="<?php main() ?>" method="post">
             <input type="text" name="firstName" id="firstName" value="" placeholder="First Name"
                 class="error">
             <br /><br />
@@ -67,11 +66,8 @@
 
             <input type="submit" name="submit" id="submit" value="Register Now!">
         </form>
-        <?php
-        }
-        ?>
-            <hr />
-            <p>&#169; 2016</p>
+        <hr />
+        <p>&#169; 2016</p>
 </body>
 
 </html>
