@@ -2,7 +2,7 @@
 $errorMessage = '';
 $values = array("firstName" => $_POST['firstName'],
                 "lastName" => $_POST['lastName'],
-                "steet" => $_POST['street'],
+                "street" => $_POST['street'],
                 "city" => $_POST['city'],
                 "province" => $_POST['province'],
                 "postalCode" => $_POST['postalCode'],
@@ -96,9 +96,9 @@ $values = array("firstName" => $_POST['firstName'],
     }
 
     if ($success) {
-       return ''; 
+       return TRUE; 
     } else {
-        return '';
+        return FALSE;
     }
 }
  
@@ -123,13 +123,13 @@ function validatePostalCode($pCode) {
 }
 
 function validateEmail($email) {
-    $expression = '/^(/w)@(/w)\.(.){3}$/';
+    $expression = '/^[\w]+@[\w]+.[\w]{2, }$/';
 
-    if(preg_match($expression, $email)) {
+    // if(preg_match($expression, $email)) {
         return true;
-    } else {
-        return false;
-    }
+    // } else {
+        // return false;
+    // }
 
 }
 
@@ -148,5 +148,14 @@ function validatePass($pass, $cPass) {
         return true;
     } else {
         return false;
+    }
+}
+
+function hasError($data) {
+    global $values;
+    if($data == "") {
+        return "error";
+    } else {
+        return "";
     }
 }
