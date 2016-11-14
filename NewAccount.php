@@ -17,30 +17,35 @@
             <h2>Your almost ready to use our fabulous product, just fill out this form!</h2>
         </header>
         <hr />
-        <div id="errorWords">
         <?php
-        if (isset($_POST['submit'])) {
-            main();
-            echo $errorMessage;
-        }
-        ?>
-        <br />
-        </div>
-        <form action='' method="post">
-            <input type="text" name="firstName" id="firstName" value="" placeholder="First Name"
-                class="error">
-            <br /><br />
+            if (isset($_POST['submit'])) {
+                $success = main();
+                echo "<div id=\"errorWords\" style=\"display: hidden\">";
+                echo $errorMessage;
+                echo "</div>";
+            }
+            
+            if(!$success) {
+            ?>
+            <br />
+            <form action='' method="post">
+                <input type="text" name="firstName" id="firstName" value="<?php echo $values['firstName'] ?>"
+                    placeholder="First Name" class="<?php if (isset($_POST['submit'])) { echo hasError($values['firstName']);} ?>">
+                <br /><br />
 
-            <input type="text" name="lastName" id="lastName" value="" placeholder="Last Name">
-            <br /><br />
+                <input type="text" name="lastName" id="lastName" value="<?php echo $values['lastName'] ?>"
+                    placeholder="Last Name" class="<?php echo hasError($values['lastName']); ?>">
+                <br /><br />
 
-            <input type="text" name="street" id="street" value="" placeholder="Street">
-            <br /><br />
+                <input type="text" name="street" id="street" value="<?php echo $values['street'] ?>"
+                    placeholder="Street" class="<?php if (isset($_POST['submit'])) { echo hasError($values['street']); } ?>">
+                <br /><br />
 
-            <input type="type" name="city" id="city" value="" placeholder="City">
-            <br /><br />
+                <input type="type" name="city" id="city" value="<?php echo $values['city'] ?>"
+                    placeholder="City" class="<?php if (isset($_POST['submit'])) { echo hasError($values['city']); } ?>">
+                <br /><br />
 
-            <select name="province" id="province">
+                <select name="province" id="province" class="<?php if (isset($_POST['submit'])) { echo hasError($values['province']); } ?>">
             <option value="" disabled="disabled" selected="selected">Please choose you province</option>
             <option value="ON">Ontario</option> 
             <option value="QC">Quebec</option>
@@ -56,27 +61,36 @@
             <option value="YK">Yukon</option>
             <option value="NV">Nunavut</option>
         </select>
-            <br /><br />
+                <br /><br />
 
-            <input type="text" name="postalCode" id="postalCode" value="" placeholder="Postal Code">
-            <br /><br />
+                <input type="text" name="postalCode" id="postalCode" value="<?php echo $values['postalCode'] ?>"
+                    placeholder="Postal Code" class="<?php if (isset($_POST['submit'])) { echo hasError($values['postalCode']);} ?>">
+                <br /><br />
 
-            <input type="text" name="email" id="email" value="" placeholder="E-mail Address">
-            <br /><br />
+                <input type="text" name="email" id="email" value="<?php echo $values['email'] ?>"
+                    placeholder="E-mail Address" class="<?php if (isset($_POST['submit'])) { echo hasError($values['email']); } ?>">
+                <br /><br />
 
-            <input type="text" name="telephone" id="teleponge" value="" placeholder="Phone Number">
-            <br /><br />
+                <input type="text" name="telephone" id="telephone" value="<?php $values['telephone'] ?>"
+                    placeholder="Phone Number" class="<?php if (isset($_POST['submit'])) { echo hasError($values['telephone']); } ?>">
+                <br /><br />
 
-            <input type="password" name="pass" id="pass" value="" placeholder="Password">
-            <br /><br />
+                <input type="password" name="pass" id="pass" value="" placeholder="Password" class="<?php if (isset($_POST['submit'])) { echo hasError($values['pass']); } ?>">
+                <br /><br />
 
-            <input type="password" name="confirmPass" id="confirmPass" value="" placeholder="Confirm Password">
-            <br /><br />
+                <input type="password" name="confirmPass" id="confirmPass" value="" placeholder="Confirm Password"
+                    class="<?php if (isset($_POST['submit'])) { echo hasError($values['confirmPass']); } ?>">
+                <br /><br />
 
-            <input type="submit" name="submit" id="submit" value="Register Now!">
-        </form>
-        <hr />
-        <p>&#169; 2016</p>
+                <input type="submit" name="submit" id="submit" value="Register Now!">
+            </form>
+            <?php
+            } else {
+            echo "<p>Thanks for registering! You will recieve an email when your account is ready.</p>";
+            }
+?>
+                <hr />
+                <p>&#169; 2016</p>
 </body>
 
 </html>
