@@ -14,64 +14,64 @@ $errorMessage = '';
     $pass = trim($_POST[pass]);    
     $confirmPass = trim($_POST[confirm]);    
     $success = TRUE;
-    $errorEnding = " Please enter a proper value \n";
+    $errorEnding = " Please enter a proper value" . "<br>";
 
     if(validateExists($firstName) == FALSE) {
-        $errorMessage = "First name is empty." . $errorEnding;
+        $errorMessage .= "First name is empty. $errorEnding";
         $success = FALSE;
     }
 
     if(validateExists($lastName) == FALSE) {
-        $errorMessage = "Last name is empty." . $errorEnding; 
+        $errorMessage .= "Last name is empty." . $errorEnding; 
         $success = FALSE;
     }
 
     if(validateExists($street) == FALSE) {
-        $errorMessage = "Street is empty." . $errorEnding; 
+        $errorMessage .= "Street is empty." . $errorEnding; 
         $success = FALSE;
     }
     
     if(validateExists($city) == FALSE) {
-        $errorMessage = "City is empty." . $errorEnding;
+        $errorMessage .= "City is empty." . $errorEnding;
         $success = FALSE;
     }
 
     if(validateExists($postalCode) == FALSE) {
-        $errorMessage = "Postal Code is empty." . $errorEnding;
+        $errorMessage .= "Postal Code is empty." . $errorEnding;
         $success = FALSE;
     } else {
         if(!validatePostalCode($postalCode)) {
-            $errorMessage = "Postal Code is not formatted correctly (A1A 1A1)." . $errorEnding;
+            $errorMessage .= "Postal Code is not formatted correctly (A1A 1A1)." . $errorEnding;
             $success = FALSE;
         }
     }   
 
     if (!validateExists($email)) {
-        $errorMessage = "Email is empty." . $errorEnding;
+        $errorMessage .= "Email is empty." . $errorEnding;
         $success = FALSE;
     } else  {
         if (!validateEmail($email)) {
-            $errorMessage = "Email is not formatted correctly. (abc@xyz.hjk)" . $errorEnding;
+            $errorMessage .= "Email is not formatted correctly. (abc@xyz.hjk)" . $errorEnding;
             $success = FALSE;
         }
     }
 
     if (!validateExists($telephone)) {
-        $errorMessage = "Phone number is empty." . $errorEnding;
+        $errorMessage .= "Phone number is empty." . $errorEnding;
         $success = FALSE;
     } else {
         if (!validatePhone($telephone)) {
-            $errorMessage = "Phone number is not formatted correctly (###-###-####)" . $errorEnding;
+            $errorMessage .= "Phone number is not formatted correctly (###-###-####)" . $errorEnding;
             $success = FALSE;
         } 
     }
 
     if (!validateExists($pass) OR !validateExists($confirmPass)) {
-        $errorMessage = "Password is empty." . $errorEnding;
+        $errorMessage .= "Password is empty." . $errorEnding;
         $success = FALSE;
     } else {
         if(!validatePass($pass, $confirmPass)) {
-            $errorMessage = "Passwords do not match." . $errorEnding;
+            $errorMessage .= "Passwords do not match." . $errorEnding;
             $success = FALSE;
         } 
     }
