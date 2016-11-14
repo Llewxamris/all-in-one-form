@@ -1,78 +1,97 @@
 <?php
 $errorMessage = '';
+$values = array("firstName" => $_POST['firstName'],
+                "lastName" => $_POST['lastName'],
+                "steet" => $_POST['street'],
+                "city" => $_POST['city'],
+                "province" => $_POST['province'],
+                "postalCode" => $_POST['postalCode'],
+                "email" => $_POST['email'],
+                "telephone" => $_POST['telephone'],
+                "pass" => $_POST['pass'],
+                "confirmPass" => $_POST['confirmPass']);
 
  function main() {
     global $errorMessage; 
-    $firstName = trim($_POST[firstName]);    
-    $lastName = trim($_POST[lastName]);    
-    $street = trim($_POST[street]);    
-    $city = trim($_POST[city]);    
-    $province = trim($_POST[province]);    
-    $postalCode = trim($_POST[postalCode]);    
-    $email = trim($_POST[email]);    
-    $telephone = trim($_POST[telephone]);    
-    $pass = trim($_POST[pass]);    
-    $confirmPass = trim($_POST[confirm]);    
+    global $values;
     $success = TRUE;
     $errorEnding = " Please enter a proper value" . "<br>";
 
-    if(validateExists($firstName) == FALSE) {
+    foreach($values as $key) {
+        $values[$key] = trim($values[$key]);
+    } 
+
+    if(validateExists($values['firstName']) == FALSE) {
         $errorMessage .= "First name is empty. $errorEnding";
+        $values['firstName'] = "";
         $success = FALSE;
     }
 
-    if(validateExists($lastName) == FALSE) {
+    if(validateExists($values['lastName']) == FALSE) {
         $errorMessage .= "Last name is empty." . $errorEnding; 
+        $values['lastName'] = "";
         $success = FALSE;
     }
 
-    if(validateExists($street) == FALSE) {
+    if(validateExists($values['street']) == FALSE) {
         $errorMessage .= "Street is empty." . $errorEnding; 
         $success = FALSE;
+        $values['street'] = "";
     }
     
-    if(validateExists($city) == FALSE) {
+    if(validateExists($values['city']) == FALSE) {
         $errorMessage .= "City is empty." . $errorEnding;
         $success = FALSE;
+        $values['city'] = "";
     }
 
-    if(validateExists($postalCode) == FALSE) {
+    if(validateExists($values['postalCode']) == FALSE) {
         $errorMessage .= "Postal Code is empty." . $errorEnding;
         $success = FALSE;
+        $values['postalCode'] = "";
     } else {
-        if(!validatePostalCode($postalCode)) {
+        if(!validatePostalCode($values['postalCode'])) {
             $errorMessage .= "Postal Code is not formatted correctly (A1A 1A1)." . $errorEnding;
             $success = FALSE;
+            $values['postalCode'] = "";
         }
     }   
 
-    if (!validateExists($email)) {
+    if (!validateExists($values['email'])) {
         $errorMessage .= "Email is empty." . $errorEnding;
         $success = FALSE;
+        $values['email'] = "";
     } else  {
-        if (!validateEmail($email)) {
+        if (!validateEmail($values['email'])) {
             $errorMessage .= "Email is not formatted correctly. (abc@xyz.hjk)" . $errorEnding;
             $success = FALSE;
+            $values['email'] = "";
         }
     }
 
-    if (!validateExists($telephone)) {
+    if (!validateExists($values['telephone'])) {
         $errorMessage .= "Phone number is empty." . $errorEnding;
         $success = FALSE;
+        $values['telephone'] = "";
     } else {
-        if (!validatePhone($telephone)) {
+        if (!validatePhone($values['telephone'])) {
             $errorMessage .= "Phone number is not formatted correctly (###-###-####)" . $errorEnding;
             $success = FALSE;
+            $values['telephone'] = "";
         } 
     }
 
-    if (!validateExists($pass) OR !validateExists($confirmPass)) {
+    if (!validateExists($values['pass']) OR !validateExists($values['confirmPass'])) {
         $errorMessage .= "Password is empty." . $errorEnding;
         $success = FALSE;
+        $values['pass'] = "";
+        $values['confirmPass'] = "";
     } else {
-        if(!validatePass($pass, $confirmPass)) {
+        if(!validatePass($values['pass'], $values['confirmPass'])) {
             $errorMessage .= "Passwords do not match." . $errorEnding;
             $success = FALSE;
+            $values['pass'] = "";
+            $values['confirmPass'] = "";
         } 
     }
 
