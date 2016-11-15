@@ -10,6 +10,7 @@
 
 <body>
     <?php
+    // Import AccountFunctions.inc to get access to the main function
     include_once './AccountFunctions.inc';
     ?>
         <header>
@@ -19,6 +20,7 @@
         <hr />
         <?php
             if (isset($_POST['submit'])) {
+                // Run the following if the form has previously been submitted
                 $success = main();
                 echo "<div id=\"errorWords\" style=\"display: hidden\">";
                 echo $errorMessage;
@@ -26,8 +28,11 @@
             }
             
             if(!$success) {
+                // If the form did not pass validation (or its the first time running), end the PHP script.
             ?>
             <br />
+            <!-- Values is set to the users input if the input was valid, and '' if it was not.
+                 If it retuned as '', set the class to error.  -->
             <form action='' method="post">
                 <input type="text" name="firstName" id="firstName" value="<?php echo $values['firstName'] ?>"
                     placeholder="First Name" class="<?php if (isset($_POST['submit'])) { echo hasError($values['firstName']);} ?>">
@@ -46,20 +51,20 @@
                 <br /><br />
 
                 <select name="province" id="province" class="<?php if (isset($_POST['submit'])) { echo hasError($values['province']); } ?>">
-            <option value="" disabled="disabled" selected="selected">Please choose you province</option>
-            <option value="ON">Ontario</option> 
-            <option value="QC">Quebec</option>
-            <option value="BC">British Columbia</option>
-            <option value="AB">Alberta</option>
-            <option value="MB">Manitoba</option>
-            <option value="SK">Saskatchewan</option>
-            <option value="NS">Nova Scotia</option>
-            <option value="NB">New Brunswick</option>
-            <option value="NL">Newfoundland and Labrador</option>
-            <option value="PE">Prince Edward Island</option>
-            <option value="NT">Northwest Territories</option>
-            <option value="YK">Yukon</option>
-            <option value="NV">Nunavut</option>
+                    <option value="" disabled="disabled" selected="selected">Please choose you province</option>
+                    <option value="ON">Ontario</option> 
+                    <option value="QC">Quebec</option>
+                    <option value="BC">British Columbia</option>
+                    <option value="AB">Alberta</option>
+                    <option value="MB">Manitoba</option>
+                    <option value="SK">Saskatchewan</option>
+                    <option value="NS">Nova Scotia</option>
+                    <option value="NB">New Brunswick</option>
+                    <option value="NL">Newfoundland and Labrador</option>
+                    <option value="PE">Prince Edward Island</option>
+                    <option value="NT">Northwest Territories</option>
+                    <option value="YK">Yukon</option>
+                    <option value="NV">Nunavut</option>
         </select>
                 <br /><br />
 
