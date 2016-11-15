@@ -124,13 +124,13 @@ function validatePostalCode($pCode) {
 }
 
 function validateEmail($email) {
-    $expression = '/^[\w]+@[\w]+.[\w]{2, }$/';
+    $expression = '/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/';
 
-    // if(preg_match($expression, $email)) {
+    if(preg_match($expression, $email)) {
         return true;
-    // } else {
-        // return false;
-    // }
+    } else {
+        return false;
+    }
 
 }
 
