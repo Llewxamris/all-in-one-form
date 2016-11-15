@@ -1,5 +1,7 @@
 <?php
+// errorMessage is set to empty string to start.
 $errorMessage = '';
+// An associative array of all of the fields on the page and their data.
 $values = array("firstName" => $_POST['firstName'],
                 "lastName" => $_POST['lastName'],
                 "street" => $_POST['street'],
@@ -12,12 +14,15 @@ $values = array("firstName" => $_POST['firstName'],
                 "confirmPass" => $_POST['confirmPass']);
 
  function main() {
+    // The main function that calls all the other functions.
+    // Returns TRUE if no errors are found, and FALSE if errors are found.
     global $errorMessage; 
     global $values;
     $success = TRUE;
     $errorEnding = " Please enter a proper value" . "<br>";
-
+    
     foreach($values as $key => $input) {
+        // Trims each value
         $values[$key] = trim($input);
     } 
 
@@ -97,14 +102,15 @@ $values = array("firstName" => $_POST['firstName'],
 
     if ($success) {
         writeToFile();
-        return TRUE; 
+        return $success; 
     } else {
-        return FALSE;
+        return $success;
     }
 }
  
 
 function validateExists($data) {
+    // Makes sure the data is not empty.
     if($data != '') {
         return TRUE;
     } else {
@@ -113,8 +119,8 @@ function validateExists($data) {
 }
 
 function validatePostalCode($pCode) {
+    // Validates the postal code to specific regex.
     $expression = '/^[a-zA-Z][\d][a-zA-Z] [\d][a-zA-Z][\d]$/';
-    
     if(preg_match($expression, $pCode)) {
         return true;
     } else {
@@ -124,8 +130,8 @@ function validatePostalCode($pCode) {
 }
 
 function validateEmail($email) {
+    // Validates the email address to specific regex.
     $expression = '/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/';
-
     if(preg_match($expression, $email)) {
         return true;
     } else {
@@ -135,8 +141,8 @@ function validateEmail($email) {
 }
 
 function validatePhone($phone) {
+    // Validates the phone number to specific regex.
     $expression = '/^(\d){3}-(\d){3}-(\d){4}$/';
-
     if(preg_match($expression, $phone)) {
         return true;
     } else {
@@ -145,6 +151,7 @@ function validatePhone($phone) {
 }
 
 function validatePass($pass, $cPass) {
+    // Validates that both passwords are the same.
     if($pass == $cPass) {
         return true;
     } else {
@@ -153,6 +160,7 @@ function validatePass($pass, $cPass) {
 }
 
 function hasError($data) {
+    // Determins if the data had an error or not.
     global $values;
     if($data == "") {
         return "error";
@@ -162,6 +170,7 @@ function hasError($data) {
 }
 
 function writeToFile() {
+    // Writes everything in the array $values to the file accounts.txt
     global $values;
     $textToFile = "";
     foreach ($values as $key => $input) {
