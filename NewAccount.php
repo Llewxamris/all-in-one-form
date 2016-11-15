@@ -10,7 +10,7 @@
 
 <body>
     <?php
-    include_once './AccountFunctions.php';
+    include_once './AccountFunctions.inc';
     ?>
         <header>
             <h1>Register a New Account!</h1>
@@ -34,7 +34,7 @@
                 <br /><br />
 
                 <input type="text" name="lastName" id="lastName" value="<?php echo $values['lastName'] ?>"
-                    placeholder="Last Name" class="<?php echo hasError($values['lastName']); ?>">
+                    placeholder="Last Name" class="<?php if (isset($_POST['submit'])) { echo hasError($values['lastName']);} ?>">
                 <br /><br />
 
                 <input type="text" name="street" id="street" value="<?php echo $values['street'] ?>"
@@ -93,4 +93,4 @@
                 <p>&#169; 2016</p>
 </body>
 
-</html>
+/html>
