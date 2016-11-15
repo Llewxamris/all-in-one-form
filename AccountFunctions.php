@@ -17,8 +17,8 @@ $values = array("firstName" => $_POST['firstName'],
     $success = TRUE;
     $errorEnding = " Please enter a proper value" . "<br>";
 
-    foreach($values as $key) {
-        $values[$key] = trim($values[$key]);
+    foreach($values as $key => $input) {
+        $values[$key] = trim($input);
     } 
 
     if(validateExists($values['firstName']) == FALSE) {
@@ -96,7 +96,8 @@ $values = array("firstName" => $_POST['firstName'],
     }
 
     if ($success) {
-       return TRUE; 
+        writeToFile();
+        return TRUE; 
     } else {
         return FALSE;
     }
@@ -158,4 +159,14 @@ function hasError($data) {
     } else {
         return "";
     }
+}
+
+function writeToFile() {
+    global $values;
+    $textToFile = "";
+    foreach ($values as $key => $input) {
+        $textToFile .= $input . "~";
+    }
+    $textToFile .= "\r\n";
+    file_put_contents("./accounts.txt", $textToFile, FILE_APPEND);
 }
