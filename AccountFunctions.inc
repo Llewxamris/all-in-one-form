@@ -7,11 +7,11 @@ $values = array("firstName" => $_POST['firstName'],
                 "street" => $_POST['street'],
                 "city" => $_POST['city'],
                 "province" => $_POST['province'],
-                "postalCode" => $_POST['postalCode'],
+                "postalCode" => strtoupper($_POST['postalCode']),
                 "email" => $_POST['email'],
                 "telephone" => $_POST['telephone'],
-                "pass" => $_POST['pass'],
-                "confirmPass" => $_POST['confirmPass']);
+                "pass" => md5($_POST['pass']),
+                "confirmPass" => md5($_POST['confirmPass']));
 
  function main() {
     // The main function that calls all the other functions.
@@ -174,7 +174,9 @@ function writeToFile() {
     global $values;
     $textToFile = "";
     foreach ($values as $key => $input) {
-        $textToFile .= $input . "~";
+        if($key != "confirmPass") {
+            $textToFile .= $input . "~";
+        }
     }
     $textToFile .= "\r\n";
     file_put_contents("./accounts.txt", $textToFile, FILE_APPEND);
